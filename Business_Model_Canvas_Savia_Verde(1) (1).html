@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Business Model Canvas Sostenible — Savia Verde</title>
+<style>
+:root{
+  --bg:#eef3ec; --paper:#fffdf8; --ink:#243329; --muted:#667268;
+  --green:#3f6b4d; --green2:#739b76; --line:#d8e0d6;
+  --gold:#b28a4b; --shadow:0 14px 35px rgba(38,58,42,.12);
+}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+button{font:inherit}
+.app{min-height:100vh}
+header{
+  background:linear-gradient(135deg,#294936,#557c5e);
+  color:white;padding:22px clamp(18px,4vw,55px);
+  position:sticky;top:0;z-index:20;box-shadow:0 5px 20px rgba(0,0,0,.14)
+}
+.header-inner{max-width:1400px;margin:auto;display:flex;align-items:center;gap:18px;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:13px}
+.logo{width:46px;height:46px;border:1px solid rgba(255,255,255,.45);border-radius:14px;display:grid;place-items:center;font-size:24px;background:rgba(255,255,255,.12)}
+h1{font-size:clamp(20px,3vw,30px);margin:0;font-weight:800;letter-spacing:-.5px}
+.subtitle{font-size:13px;opacity:.86;margin-top:3px}
+.top-actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.top-actions button,.back{
+  border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.12);
+  color:white;border-radius:12px;padding:10px 13px;cursor:pointer
+}
+main{max-width:1400px;margin:auto;padding:26px clamp(15px,4vw,55px) 60px}
+.view{display:none;animation:fade .22s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.hero{padding:15px 0 22px}
+.eyebrow{font-size:12px;text-transform:uppercase;letter-spacing:1.6px;color:var(--green);font-weight:800}
+.hero h2{font-size:clamp(27px,4vw,44px);margin:7px 0 9px;letter-spacing:-1px}
+.hero p{max-width:800px;color:var(--muted);line-height:1.65;margin:0}
+.canvas{
+  display:grid;grid-template-columns:1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows:auto auto auto;gap:12px;
+  min-height:640px
+}
+.block{
+  border:1px solid var(--line);border-radius:18px;background:var(--paper);
+  box-shadow:var(--shadow);padding:18px;cursor:pointer;position:relative;
+  overflow:hidden;transition:.2s;min-height:170px
+}
+.block:hover{transform:translateY(-4px);border-color:#9eb49f}
+.block:after{content:"Tocar para visualizar →";position:absolute;right:14px;bottom:13px;font-size:11px;color:#819084}
+.block .num{font-size:11px;font-weight:800;color:var(--gold);letter-spacing:1px}
+.block h3{margin:8px 0 8px;font-size:18px}
+.block p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.b1{grid-column:1/3;grid-row:1/3}.b2{grid-column:3;grid-row:1/2}.b3{grid-column:4;grid-row:1/2}.b4{grid-column:5;grid-row:1/3}
+.b5{grid-column:3;grid-row:2/4}.b6{grid-column:1/2;grid-row:3}.b7{grid-column:2;grid-row:3}.b8{grid-column:4;grid-row:3}.b9{grid-column:5;grid-row:3}
+
+.explore{margin-top:24px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.explore-card{background:#e3ebe0;border:1px solid #cbd8c9;border-radius:17px;padding:17px;cursor:pointer}
+.explore-card h3{margin:0 0 5px;font-size:16px}.explore-card p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+
+.detail-top{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+.detail-top .back{background:var(--green);border-color:var(--green)}
+.detail-number{color:var(--gold);font-weight:800;font-size:12px;letter-spacing:1.2px}
+.detail h2{font-size:clamp(28px,5vw,46px);margin:0 0 10px;letter-spacing:-1px}
+.detail-lead{font-size:16px;line-height:1.7;color:var(--muted);max-width:900px}
+.content-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:18px;margin-top:22px}
+.panel{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:21px;box-shadow:0 8px 25px rgba(38,58,42,.07)}
+.panel h3{margin:0 0 12px;font-size:16px}.panel p{line-height:1.7;color:#536158}
+.panel ul{margin:8px 0 0;padding-left:20px}.panel li{margin:9px 0;line-height:1.55}
+.question{border-left:4px solid var(--green2);padding:11px 13px;background:#f0f5ee;border-radius:8px;margin:10px 0;line-height:1.5}
+.badges{display:flex;flex-wrap:wrap;gap:8px}.badge{padding:8px 10px;background:#edf3eb;border:1px solid #d6e2d4;border-radius:99px;font-size:12px}
+
+.mini-table{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid var(--line);border-radius:15px;background:var(--paper)}
+.mini-table th,.mini-table td{padding:14px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left;line-height:1.55}
+.mini-table th{background:#e9f0e6;color:#314b38;font-size:13px}.mini-table td{font-size:13px;color:#536158}
+.mini-table tr:last-child td{border-bottom:0}
+
+.r-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:20px}
+.r-card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:var(--shadow)}
+.r-icon{font-size:26px}.r-card h3{margin:8px 0 6px}.r-card p{margin:0;color:var(--muted);line-height:1.65}
+
+.nav-footer{display:flex;justify-content:space-between;gap:10px;margin-top:26px}
+.nav-footer button{border:1px solid var(--line);background:white;padding:11px 14px;border-radius:12px;cursor:pointer;color:var(--ink)}
+
+@media(max-width:900px){
+  .canvas{grid-template-columns:repeat(2,1fr);grid-template-rows:none;min-height:0}
+  .block{grid-column:auto!important;grid-row:auto!important;min-height:160px}
+  .b1{grid-column:span 2!important}
+  .b4{grid-column:span 2!important}
+  .explore,.content-grid,.r-grid{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  header{padding:15px}.header-inner{align-items:flex-start}.subtitle{font-size:11px}
+  .top-actions button{padding:8px 10px;font-size:12px}
+  main{padding:18px 12px 40px}
+  .canvas{grid-template-columns:1fr}
+  .block,.b1,.b4{grid-column:auto!important}
+  .block{min-height:145px}
+  .detail-top{align-items:flex-start}.detail-top .back{padding:9px 10px}
+  .mini-table{display:block;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<header>
+  <div class="header-inner">
+    <div class="brand">
+      <div class="logo">♻</div>
+      <div>
+        <h1>Business Model Canvas Sostenible</h1>
+        <div class="subtitle">Savia Verde · Jabón artesanal de sábila y manzanilla</div>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button onclick="showView('canvas')">Canvas</button>
+      <button onclick="showView('mini')">Mini-CANVAS</button>
+      <button onclick="showView('impacto')">Impacto · 4R</button>
+    </div>
+  </div>
+</header>
+
+<main>
+<section id="canvas" class="view active">
+  <div class="hero">
+    <div class="eyebrow">Lienzo principal · 9 bloques</div>
+    <h2>Business Model Canvas</h2>
+    <p>Selecciona un bloque para abrir únicamente su información. El lienzo mantiene los nueve componentes originales del Business Model Canvas y el contenido complementario se consulta en apartados independientes.</p>
+  </div>
+
+  <div class="canvas">
+    <article class="block b1" onclick="showView('v1')"><div class="num">01</div><h3>Propuesta de Valor Sostenible</h3><p>Qué necesidad ambiental, social y de cuidado personal atiende Savia Verde.</p></article>
+    <article class="block b2" onclick="showView('v2')"><div class="num">02</div><h3>Segmentos de Clientes</h3><p>Consumidores responsables y establecimientos interesados en productos naturales.</p></article>
+    <article class="block b3" onclick="showView('v3')"><div class="num">03</div><h3>Canales</h3><p>Redes sociales, WhatsApp, venta directa y distribución local.</p></article>
+    <article class="block b4" onclick="showView('v4')"><div class="num">04</div><h3>Relación con Clientes</h3><p>Educación ambiental, recomendación, devolución de empaques y atención cercana.</p></article>
+    <article class="block b5" onclick="showView('v5')"><div class="num">05</div><h3>Fuentes de Ingreso</h3><p>Venta individual, paquetes, kits, regalos, mayoreo y pedidos para eventos.</p></article>
+    <article class="block b6" onclick="showView('v6')"><div class="num">06</div><h3>Recursos Clave</h3><p>Sábila, manzanilla, materiales, empaques, herramientas y presencia digital.</p></article>
+    <article class="block b7" onclick="showView('v7')"><div class="num">07</div><h3>Actividades Clave</h3><p>Elaboración, selección, diseño ecológico, comercialización y recuperación de empaques.</p></article>
+    <article class="block b8" onclick="showView('v8')"><div class="num">08</div><h3>Socios Clave</h3><p>Proveedores, centros de reciclaje, tiendas, spas, hoteles y organizaciones ambientales.</p></article>
+    <article class="block b9" onclick="showView('v9')"><div class="num">09</div><h3>Estructura de Costos</h3><p>Materias primas, elaboración, empaque, transporte, publicidad y administración.</p></article>
+  </div>
+
+  <div class="explore">
+    <div class="explore-card" onclick="showView('mini')"><h3>🌱 Mini-CANVAS sostenible</h3><p>Visión individual: problema, clientes conscientes, canales verdes, relación, recursos, actividades e impacto.</p></div>
+    <div class="explore-card" onclick="showView('impacto')"><h3>♻️ Impacto ambiental · 4R</h3><p>Aplicación del enfoque Reducir, Reutilizar, Reciclar y Reparar al proyecto.</p></div>
+  </div>
+</section>
+
+<!-- VISTAS INDIVIDUALES -->
+<section id="v1" class="view detail">
+<div class="detail-top"><button class="back" onclick="showView('canvas')">← Canvas</button><div><div class="detail-number">BLOQUE 01</div></div></div>
+<h2>Propuesta de Valor Sostenible</h2>
+<p class="detail-lead">Savia Verde ofrece un jabón artesanal de sábila y manzanilla que combina limpieza suave, sensación de hidratación, frescura y suavidad, utilizando ingredientes de origen natural y una elaboración artesanal, mientras promueve una experiencia de cuidado personal responsable con el medio ambiente.</p>
+<div class="content-grid">
+<div class="panel"><h3>¿Qué necesidad atiende?</h3><div class="question">Higiene + cuidado personal + sensación agradable en la piel.</div><p>También responde al interés por productos artesanales, naturales, locales, atractivos y responsables con el ambiente.</p><h3>Diferenciación</h3><div class="badges"><span class="badge">Producto artesanal</span><span class="badge">Sábila</span><span class="badge">Manzanilla</span><span class="badge">Beneficios cosméticos</span><span class="badge">Identidad ecológica</span></div></div>
+<div class="panel"><h3>Elemento circular</h3><p>Empaque con enfoque ambiental, reducción de desperdicios, aprovechamiento eficiente de materias primas y propuesta de recuperación/reciclaje de empaques.</p></div>
+</div></section>
+
+<section id="v2" class="view detail">
+<div class="detail-top"><button class="back" onclick="showView('canvas')">← Canvas</button><div class="detail-number">BLOQUE 02</div></div>
+<h2>Segmentos de Clientes</h2>
+<p class="detail-lead">El mercado inicial se concentra en Tuxtla Gutiérrez, Chiapas y zonas cercanas, con posibilidad de expansión estatal y nacional.</p>
+<div class="content-grid">
+<div class="panel"><h3>Consumidor principal</h3><ul><li>Personas de 18 a 55 años.</li><li>Hombres y mujeres.</li><li>Nivel socioeconómico principalmente medio y medio-alto, manteniendo un precio accesible.</li><li>Estudiantes, trabajadores, profesionistas, emprendedores y personas interesadas en el cuidado personal.</li></ul></div>
+<div class="panel"><h3>Perfil consciente</h3><ul><li>Interés en productos artesanales.</li><li>Interés en ingredientes de origen natural.</li><li>Valoran productos locales.</li><li>Se preocupan por el medio ambiente.</li><li>Buscan experiencias agradables de higiene y cuidado personal.</li></ul></div>
+</div>
+<div class="panel" style="margin-top:18px"><h3>Segmentos de expansión</h3><div class="badges"><span class="badge">Tiendas naturistas</span><span class="badge">Spas</span><span class="badge">Hoteles</span><span class="badge">Tiendas ecológicas</span><span class="badge">Tiendas artesanales</span></div></div>
+</section>
+
+<section id="v3" class="view detail">
+<div class="detail-top"><button class="back" onclick="showView('canvas')">← Canvas</button><div class="detail-number">BLOQUE 03</div></div>
+<h2>Canales</h2>
+<p class="detail-lead">La distribución comienza principalmente de manera directa, apoyándose en canales digitales y espacios locales.</p>
+<div class="content-grid">
+<div class="panel"><h3>Canales de venta y comunicación</h3><ul><li>Facebook, Instagram y TikTok.</li><li>WhatsApp Business para pedidos, consultas y catálogo.</li><li>Venta física en bazares, ferias, mercados locales y eventos.</li><li>Tiendas naturistas, spas, hoteles y tiendas de productos artesanales como expansión.</li></ul></div>
+<div class="panel"><h3>Canales verdes</h3><ul><li>Priorizar distribución local.</li><li>Realizar entregas agrupadas.</li><li>Utilizar puntos de reciclaje como posibles centros de entrega/recuperación.</li><li>Favorecer proveedores locales cuando sea posible.</li></ul></div>
+</div>
+</section>
+
+<section id="v4" class="view detail">
+<div class="detail-top"><button class="back" onclick="showView('canvas')">← Canvas</button><div class="detail-number">BLOQUE 04</div></div>
+<h2>Relación con Clientes</h2>
+<p class="detail-lead">La relación se basa en atención directa, comunicación educativa y construcción de una comunidad interesada en el cuidado personal y ambiental.</p>
+<div class="content-grid">
+<div class="panel"><h3>Relación propuesta</h3><ul><li>Educación ambiental mediante redes sociales.</li><li>Información sobre el uso responsable de materiales.</li><li>Programa de recomendación con beneficio en la próxima compra.</li><li>Contenido educativo sobre sábila y manzanilla.</li><li>Atención y pedidos mediante WhatsApp Business.</li></ul></div>
+<div class="panel"><h3>Consumo responsable</h3><ul><li>Incentivos por devolución de empaques.</li><li>Participación en acciones de reciclaje.</li><li>Información clara sobre el producto, sus materiales y uso.</li></ul></div>
+</div>
+</section>
+
+<section id="v5" class="view detail">
+<div class="detail-top"><button class="back" onclick="showView('canvas')">← Canvas</button><div class="detail-number">BLOQUE 05</div></div>
+<h2>Fuentes de Ingreso</h2>
+<p class="detail-lead">El modelo B2C será el principal al inicio, con posibilidad de incorporar posteriormente ventas B2B.</p>
+<div class="content-grid">
+<div class="panel"><h3>Ingresos principales</h3><ul><li>Venta individual de jabón.</li><li>Paquetes de 2 o 3 jabones.</li><li>Kits de cuidado personal.</li><li>Regalos.</li><li>Ventas al mayoreo.</li><li>Pedidos para eventos.</li></ul></div>
+<div class="panel"><h3>Precios sugeridos</h3><ul><li>1 jabón: $50 MXN.</li><li>2 jabones: $95 MXN.</li><li>3 jabones: $135 MXN.</li><li>Kit especial: $180–$220 MXN.</li></ul><p>Precio sugerido general: $45 a $60 MXN por barra de 100 g.</p></div>
+</div>
+</section>
+
+<section id="v6" class="view detail">
+<div class="detail-top"><button class="back" onclick="showView('canvas')">← Canvas</button><div class="detail-number">BLOQUE 06</div></div>
+<h2>Recursos Clave</h2>
+<p class="detail-lead">Los recursos combinan materias primas, materiales de producción, herramientas, empaque y recursos digitales.</p>
+<div class="content-grid">
+<div class="panel"><h3>Recursos materiales</h3><div class="badges"><span class="badge">Sábila</span><span class="badge">Manzanilla</span><span class="badge">Aceites o bases</span><span class="badge">Empaques reciclables</span><span class="badge">Etiquetas</span><span class="badge">Herramientas</span></div></div>
+<div class="panel"><h3>Recursos complementarios</h3><ul><li>Redes sociales.</li><li>Proveedores locales.</li><li>Materiales reciclados cuando sea viable.</li><li>Alianzas con centros de acopio.</li><li>Energía y recursos de producción gestionados eficientemente.</li></ul></div>
+</div>
+</section>
+
+<section id="v7" class="view detail">
+<div class="detail-top"><button class="back" onclick="showView('canvas')">← Canvas</button><div class="detail-number">BLOQUE 07</div></div>
+<h2>Actividades Clave</h2>
+<p class="detail-lead">Las actividades centrales abarcan desde la selección de materias primas hasta la comercialización y las acciones circulares.</p>
+<div class="content-grid">
+<div class="panel"><h3>Operación</h3><ul><li>Elaboración artesanal.</li><li>Selección de materias primas.</li><li>Diseño ecológico del empaque.</li><li>Reducción de desperdicios.</li><li>Comercialización y promoción.</li><li>Educación ambiental.</li></ul></div>
+<div class="panel"><h3>Economía circular</h3><ul><li>Recolección y clasificación de residuos.</li><li>Recuperación y reutilización/reciclaje de empaques.</li><li>Logística inversa.</li><li>Prolongación de la vida útil de herramientas y moldes.</li></ul></div>
+</div>
+</section>
+
+<section id="v8" class="view detail">
+<div class="detail-top"><button class="back" onclick="showView('canvas')">← Canvas</button><div class="detail-number">BLOQUE 08</div></div>
+<h2>Socios Clave</h2>
+<p class="detail-lead">Las alianzas permiten asegurar insumos, ampliar canales y fortalecer las acciones de responsabilidad ambiental.</p>
+<div class="content-grid">
+<div class="panel"><h3>Socios comerciales y operativos</h3><ul><li>Proveedores locales.</li><li>Tiendas naturistas.</li><li>Spas.</li><li>Hoteles.</li><li>Tiendas ecológicas.</li></ul></div>
+<div class="panel"><h3>Socios circulares y sociales</h3><ul><li>Centros de reciclaje.</li><li>Organizaciones ambientales.</li><li>Empresas con políticas ESR.</li><li>Gobiernos locales.</li><li>Establecimientos que compartan principios de responsabilidad social.</li></ul></div>
+</div>
+</section>
+
+<section id="v9" class="view detail">
+<div class="detail-top"><button class="back" onclick="showView('canvas')">← Canvas</button><div class="detail-number">BLOQUE 09</div></div>
+<h2>Estructura de Costos</h2>
+<p class="detail-lead">La estructura considera los costos necesarios para producir, presentar, distribuir y promocionar el jabón, además de las acciones ambientales.</p>
+<div class="content-grid">
+<div class="panel"><h3>Costos principales</h3><ul><li>Materias primas.</li><li>Elaboración.</li><li>Empaques y etiquetas.</li><li>Transporte.</li><li>Publicidad.</li><li>Servicios.</li><li>Costos administrativos.</li><li>Margen de ganancia.</li></ul></div>
+<div class="panel"><h3>Costos circulares / ESR</h3><ul><li>Acciones de reciclaje o recuperación de materiales.</li><li>Procesos de manejo de materiales.</li><li>Transporte sostenible cuando sea viable.</li><li>Posibles certificaciones ESR en etapas futuras.</li></ul></div>
+</div>
+</section>
+
+<section id="mini" class="view detail">
+<div class="detail-top"><button class="back" onclick="showView('canvas')">← Canvas</button><div class="detail-number">APARTADO COMPLEMENTARIO</div></div>
+<h2>Mini-CANVAS Sostenible</h2>
+<p class="detail-lead">Visión individual aplicada al proyecto Savia Verde antes de integrarla al Canvas grupal.</p>
+<div class="panel" style="margin-top:20px;overflow:auto">
+<table class="mini-table">
+<thead><tr><th>Bloque</th><th>Propuesta</th></tr></thead>
+<tbody>
+<tr><th>1. Propuesta de Valor Sostenible</th><td>Jabón artesanal de sábila y manzanilla que combina cuidado personal, ingredientes de origen natural y responsabilidad ambiental. Busca reducir plásticos innecesarios, utilizar empaques reciclables y aprovechar eficientemente las materias primas.</td></tr>
+<tr><th>2. Segmentos de Clientes</th><td>Personas de 18 a 55 años de Tuxtla Gutiérrez y zonas cercanas, interesadas en productos artesanales, naturales, locales y responsables con el medio ambiente. También tiendas naturistas, spas, hoteles y tiendas ecológicas.</td></tr>
+<tr><th>3. Canales</th><td>Redes sociales, WhatsApp Business, venta directa, bazares, ferias y mercados locales. Para disminuir la huella ambiental, se puede priorizar la distribución local y entregas agrupadas.</td></tr>
+<tr><th>4. Relación con Clientes</th><td>Educación ambiental mediante redes sociales, información sobre el uso responsable de materiales, programa de recomendación y, como propuesta circular, incentivos para devolver empaques o participar en acciones de reciclaje.</td></tr>
+<tr><th>5. Fuentes de Ingreso</th><td>Venta individual de jabones, paquetes de 2 o 3 unidades, kits de cuidado personal, regalos, ventas al mayoreo y pedidos para eventos.</td></tr>
+<tr><th>6. Recursos Clave</th><td>Sábila, manzanilla, aceites o bases para la elaboración, empaques reciclables, etiquetas, herramientas de producción y redes sociales. También pueden incorporarse proveedores locales y materiales reciclados.</td></tr>
+<tr><th>7. Actividades Clave</th><td>Elaboración artesanal, selección de materias primas, diseño ecológico del empaque, reducción de desperdicios, comercialización, educación ambiental y, como actividad circular propuesta, recuperación y reutilización/reciclaje de empaques.</td></tr>
+<tr><th>8. Socios Clave</th><td>Proveedores locales, centros de reciclaje, tiendas naturistas, spas, hoteles, tiendas ecológicas, organizaciones ambientales y establecimientos que compartan principios de responsabilidad social.</td></tr>
+<tr><th>9. Estructura de Costos</th><td>Materias primas, elaboración, empaques y etiquetas, transporte, publicidad, servicios, costos administrativos y acciones de reciclaje o recuperación de materiales.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section id="impacto" class="view detail">
+<div class="detail-top"><button class="back" onclick="showView('canvas')">← Canvas</button><div class="detail-number">APARTADO COMPLEMENTARIO</div></div>
+<h2>Impacto ambiental · Aplicación de las 4R</h2>
+<p class="detail-lead">La propuesta ambiental de Savia Verde se presenta como un sistema complementario al Canvas. No ocupa un décimo bloque: se consulta desde este apartado.</p>
+<div class="r-grid">
+<div class="r-card"><div class="r-icon">🌿</div><h3>Reducir</h3><p>Disminuir el uso de plástico y evitar materiales de empaque innecesarios. También reducir desperdicios y aprovechar eficientemente las materias primas.</p></div>
+<div class="r-card"><div class="r-icon">🔄</div><h3>Reutilizar</h3><p>Promover que ciertos envases o materiales puedan tener un segundo uso antes de convertirse en residuos.</p></div>
+<div class="r-card"><div class="r-icon">♻️</div><h3>Reciclar</h3><p>Utilizar empaques reciclables y fomentar la separación y devolución de materiales.</p></div>
+<div class="r-card"><div class="r-icon">🛠️</div><h3>Reparar</h3><p>Aunque el jabón no requiere reparación, el principio puede aplicarse a herramientas, moldes y materiales de producción, prolongando su vida útil.</p></div>
+</div>
+<div class="panel" style="margin-top:18px"><h3>Impacto ambiental esperado</h3><p>La propuesta busca reducir plásticos innecesarios, utilizar empaques reciclables cuando sea viable, reducir desperdicios, aprovechar eficientemente las materias primas y favorecer proveedores locales cuando sea posible.</p></div>
+</section>
+</main>
+</div>
+
+<script>
+const views = [...document.querySelectorAll('.view')];
+function showView(id){
+  views.forEach(v=>v.classList.remove('active'));
+  const target=document.getElementById(id);
+  if(target){target.classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+}
+window.addEventListener('keydown',e=>{if(e.key==='Escape')showView('canvas')});
+</script>
+</body>
+</html>
